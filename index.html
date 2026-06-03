@@ -632,7 +632,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, 'S
       <div class="input-row"><label>2-Story Upcharge</label><div class="input-wrap"><span class="prefix">$</span><input type="number" id="btc_c_twostory" value="10" step="1" oninput="saveCosts()"></div></div>
       <div class="input-row"><label>Extra Felt Layer</label><div class="input-wrap"><span class="prefix">$</span><input type="number" id="btc_c_extrafelt" value="5" step="1" oninput="saveCosts()"></div></div>
       <div class="card-header" style="border-top:1px solid var(--border)">Tax Rate</div>
-      <div class="input-row"><label>Supplier Tax Rate</label><div class="input-wrap"><span class="prefix">%</span><input type="number" id="btc_c_tax" value="8.43" step="0.01" oninput="saveCosts()"></div></div>
+      <div class="input-row"><label>Supplier Tax Rate</label><div class="input-wrap"><span class="prefix">%</span><input type="number" id="btc_c_tax" value="8.625" step="0.01" oninput="saveCosts()"></div></div>
     </div>
     <div style="font-size:12px; color:var(--muted); text-align:center; margin-top:8px">Tax is added to material hard costs internally — never shown to customers</div>
   </div>
@@ -1009,7 +1009,7 @@ function showTab(tab,btn){
   if(tab==='history'){if(currentHistoryView==='board')renderBoard();else renderHistory();}
   if(tab==='leaders')renderLeaderboard();
 }
-function getC(key){const stored=localStorage.getItem(key);const defaults={c_good:106,c_better:112,c_best:140,c_underlay:69.12,c_icewater:84.00,c_starter:51.54,c_drip:7.82,c_ridge_std:40.00,c_ridge_z:67.20,c_nails:39.20,c_capnails:19.00,c_labor:75,c_twostory:10,c_extrafelt:5,c_tax:8.43};return stored!==null?parseFloat(stored):(defaults[key]||0);}
+function getC(key){const stored=localStorage.getItem(key);const defaults={'btc_c_good':106,'btc_c_better':112,'btc_c_best':140,'btc_c_underlay':69.12,'btc_c_icewater':84.00,'btc_c_starter':51.54,'btc_c_drip':7.82,'btc_c_ridge_std':40.00,'btc_c_ridge_z':67.20,'btc_c_nails':39.20,'btc_c_capnails':19.00,'btc_c_labor':75,'btc_c_twostory':10,'btc_c_extrafelt':5,'btc_c_tax':8.625};return stored!==null?parseFloat(stored):(defaults[key]||0);}
 function saveCosts(){['btc_c_good','btc_c_better','btc_c_best','btc_c_underlay','btc_c_icewater','btc_c_starter','btc_c_drip','btc_c_ridge_std','btc_c_ridge_z','btc_c_nails','btc_c_capnails','btc_c_labor','btc_c_twostory','btc_c_extrafelt','btc_c_tax'].forEach(k=>{const el=document.getElementById(k);if(el)localStorage.setItem(k,el.value);});recalc();}
 function loadCosts(){['btc_c_good','btc_c_better','btc_c_best','btc_c_underlay','btc_c_icewater','btc_c_starter','btc_c_drip','btc_c_ridge_std','btc_c_ridge_z','btc_c_nails','btc_c_capnails','btc_c_labor','btc_c_twostory','btc_c_extrafelt','btc_c_tax'].forEach(k=>{const el=document.getElementById(k);if(el)el.value=getC(k);});}
 function fmtC(val){if(val==null)return '--';return '$'+Number(val).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
